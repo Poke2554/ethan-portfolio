@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #111111;
+  --color-muted: #8a8a8a;
+  --color-surface: #fafafa;
+  --color-border: rgba(17, 17, 17, 0.12);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+::selection {
+  background: rgba(17, 17, 17, 0.1);
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.page-shell {
+  @apply mx-auto w-full max-w-7xl px-6 py-24 md:px-10 md:py-28;
+}
+
+.page-title {
+  @apply font-display text-4xl uppercase tracking-[-0.03em] md:text-6xl;
+}
+
+.page-intro {
+  @apply mt-5 max-w-2xl text-sm leading-7 text-muted md:text-base;
+}
+
+.btn-primary {
+  @apply inline-flex items-center bg-foreground px-6 py-3 text-[11px] uppercase tracking-[0.24em] text-background transition hover:bg-foreground/85;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center border border-border px-6 py-3 text-[11px] uppercase tracking-[0.24em] text-foreground transition hover:border-foreground;
+}
+
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #111111;
+  --color-muted: #8a8a8a;
+  --color-surface: #fafafa;
+  --color-border: rgba(17, 17, 17, 0.12);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+::selection {
+  background: rgba(17, 17, 17, 0.1);
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.page-shell {
+  @apply mx-auto w-full max-w-7xl px-6 py-24 md:px-10 md:py-28;
+}
+
+.page-title {
+  @apply font-display text-4xl uppercase tracking-[-0.03em] md:text-6xl;
+}
+
+.page-intro {
+  @apply mt-5 max-w-2xl text-sm leading-7 text-muted md:text-base;
+}
+
+.btn-primary {
+  @apply inline-flex items-center bg-foreground px-6 py-3 text-[11px] uppercase tracking-[0.24em] text-background transition hover:bg-foreground/85;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center border border-border px-6 py-3 text-[11px] uppercase tracking-[0.24em] text-foreground transition hover:border-foreground;
+}
+
+.link-hover {
+  @apply transition-colors hover:text-foreground;
+}
+
+/* ── Page transitions ── */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Marquee ── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .reveal,
+  .marquee-track {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Film grain ── */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ── Scroll hint ── */
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+.scroll-hint-arrow {
+  animation: scroll-hint 2s ease-in-out infinite;
+}
+
+/* ── Lightbox ── */
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightbox-media {
+  animation: lightbox-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.wall-surface {
+  isolation: isolate;
+}
+
+.wall-texture {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.018) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.wall-frost {
+  /* Flou : augmente blur(6px) pour plus de flou, diminue pour moins */
+  /* Voile blanc : 0.12 = photos visibles · 0.3 = plus voilé */
+  -webkit-backdrop-filter: blur(3px) saturate(105%);
+  backdrop-filter: blur(3px) saturate(105%);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.wall-stack-item {
+  margin-top: -4.75rem;
+}
+
+@media (min-width: 768px) {
+  .wall-stack-item {
+    margin-top: -6.5rem;
+  }
+}
+
+.kodak-print {
+  @apply bg-white p-2 pb-7 shadow-[0_10px_30px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.04)];
+}
+
+.kodak-strip {
+  @apply mt-2 h-5;
+}
+
+.kodak-pin {
+  @apply absolute -top-2.5 left-1/2 z-10 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-neutral-800 shadow-[0_1px_2px_rgba(0,0,0,0.35)];
+}
+
+.kodak-tape {
+  @apply absolute -top-2 h-5 w-10 bg-white/55 shadow-sm;
+  backdrop-filter: blur(1px);
+}
+
+.kodak-tape-left {
+  left: 18%;
+  transform: rotate(-8deg);
+}
+
+@media (max-width: 768px) {
+  .kodak-print {
+    transform-origin: center top;
+  }
+}
