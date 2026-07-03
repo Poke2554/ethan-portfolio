@@ -219,21 +219,17 @@ body {
 }
 
 .wall-frost {
-  /* Flou : augmente blur() pour plus de flou, diminue pour moins */
-  /* Voile blanc : 0.32 = texte lisible · 0.5 = très voilé */
-  -webkit-backdrop-filter: blur(16px) saturate(112%);
-  backdrop-filter: blur(16px) saturate(112%);
-  background: rgba(255, 255, 255, 0.38);
+  -webkit-backdrop-filter: blur(28px) saturate(115%);
+  backdrop-filter: blur(28px) saturate(115%);
+  background: rgba(255, 255, 255, 0.55);
 }
 
-.hero-text-glow {
-  background: radial-gradient(
-    ellipse 85% 70% at center,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.72) 42%,
-    rgba(255, 255, 255, 0.2) 68%,
-    transparent 82%
-  );
+.hero-text-panel {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 0 80px 40px rgba(255, 255, 255, 0.85),
+    0 8px 32px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 .wall-stack-item {

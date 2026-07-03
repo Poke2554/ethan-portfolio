@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { MediaLightbox } from "@/components/media/MediaLightbox";
-import { OptimizedImage } from "@/components/media/OptimizedImage";
 import { OptimizedVideo } from "@/components/media/OptimizedVideo";
+import { resolveMediaSrc } from "@/lib/media";
 import { isVideoMedia, type MediaItem } from "@/types/media";
 
 type MediaGalleryProps = {
@@ -19,26 +19,29 @@ export function MediaGallery({ items }: MediaGalleryProps) {
         {items.map((item, index) => (
           <figure
             key={`${item.type}-${item.src}-${index}`}
-            className="overflow-hidden border border-border bg-surface"
+            className="overflow-hidden border border-border bg-white"
           >
             <button
               type="button"
-              className="group relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden md:aspect-[16/10]"
+              className="group relative w-full cursor-zoom-in overflow-hidden"
               onClick={() => setLightboxIndex(index)}
               aria-label={`Agrandir : ${item.alt}`}
             >
-              {isVideoMedia(item) ? (
-                <OptimizedVideo media={item} className="pointer-events-none h-full w-full" />
-              ) : (
-                <OptimizedImage
-                  media={item}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 900px"
-                  className="transition duration-500 group-hover:scale-[1.02]"
-                />
-              )}
-              <span className="absolute inset-0 bg-black/0 transition group-hover:bg-black/10" />
-              <span className="absolute bottom-4 right-4 rounded-full border border-white/60 bg-black/35 px-3 py-1 text-xs uppercase tracking-[0.18em] text-white opacity-0 transition group-hover:opacity-100">
+              <div className="relative aspect-[4/3] w-full bg-neutral-100 md:aspect-[16/10]">
+                {isVideoMedia(item) ? (
+                  <OptimizedVideo media={item} className="h-full w-full object-cover" />
+                ) : (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={resolveMediaSrc(item.src)}
+                    alt={item.alt}
+                    loading={index < 2 ? "eager" : "lazy"}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+                  />
+                )}
+              </div>
+              <span className="pointer-events-none absolute inset-0 bg-black/0 transition group-hover:bg-black/10" />
+              <span className="pointer-events-none absolute bottom-4 right-4 rounded-full border border-white/60 bg-black/50 px-3 py-1 text-xs uppercase tracking-[0.18em] text-white opacity-0 transition group-hover:opacity-100">
                 Agrandir
               </span>
             </button>
