@@ -31,14 +31,14 @@ export function HomeWall() {
         <div className="wall-frost pointer-events-none absolute inset-0 z-[15]" aria-hidden="true" />
 
         <div className="pointer-events-none absolute inset-0 z-[25] flex items-center justify-center px-6">
-          <div className="mx-auto w-full max-w-4xl text-center">
-            <p className="text-[11px] uppercase tracking-[0.45em] text-foreground/55">
+          <div className="hero-text-glow mx-auto w-full max-w-4xl px-8 py-14 text-center md:px-16 md:py-20">
+            <p className="text-[11px] uppercase tracking-[0.45em] text-foreground/70">
               {homeHero.label}
             </p>
-            <h1 className="mt-5 font-display text-[clamp(3.25rem,12vw,7.5rem)] font-semibold uppercase leading-[0.9] tracking-[-0.04em] text-foreground">
+            <h1 className="mt-5 font-display text-[clamp(3.25rem,12vw,7.5rem)] font-semibold uppercase leading-[0.9] tracking-[-0.04em] text-foreground drop-shadow-[0_1px_12px_rgba(255,255,255,0.8)]">
               {homeHero.title}
             </h1>
-            <p className="mx-auto mt-5 max-w-sm text-sm uppercase tracking-[0.28em] text-foreground/50">
+            <p className="mx-auto mt-5 max-w-sm text-sm uppercase tracking-[0.28em] text-foreground/65">
               {homeHero.subtitle}
             </p>
           </div>

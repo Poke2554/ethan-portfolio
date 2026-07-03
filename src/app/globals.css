@@ -219,11 +219,21 @@ body {
 }
 
 .wall-frost {
-  /* Flou : augmente blur(6px) pour plus de flou, diminue pour moins */
-  /* Voile blanc : 0.12 = photos visibles · 0.3 = plus voilé */
-  -webkit-backdrop-filter: blur(3px) saturate(105%);
-  backdrop-filter: blur(3px) saturate(105%);
-  background: rgba(255, 255, 255, 0.06);
+  /* Flou : augmente blur() pour plus de flou, diminue pour moins */
+  /* Voile blanc : 0.32 = texte lisible · 0.5 = très voilé */
+  -webkit-backdrop-filter: blur(16px) saturate(112%);
+  backdrop-filter: blur(16px) saturate(112%);
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.hero-text-glow {
+  background: radial-gradient(
+    ellipse 85% 70% at center,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.72) 42%,
+    rgba(255, 255, 255, 0.2) 68%,
+    transparent 82%
+  );
 }
 
 .wall-stack-item {
