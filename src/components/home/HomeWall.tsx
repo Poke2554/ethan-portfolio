@@ -31,7 +31,7 @@ export function HomeWall() {
         <div className="wall-frost pointer-events-none absolute inset-0 z-[15]" aria-hidden="true" />
 
         <div className="pointer-events-none absolute inset-0 z-[25] flex items-center justify-center px-6">
-          <div className="hero-text-panel mx-auto w-full max-w-3xl px-8 py-10 text-center md:px-14 md:py-14">
+          <div className="hero-text-panel mx-auto w-full max-w-2xl px-7 py-9 text-center md:px-12 md:py-11">
             <p className="text-[11px] uppercase tracking-[0.45em] text-foreground/80">
               {homeHero.label}
             </p>
