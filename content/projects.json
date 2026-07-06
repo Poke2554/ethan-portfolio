@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "projet-test",
+    "title": "Projet test",
+    "excerpt": "Première série intégrée au portfolio — sélection de photos test.",
+    "description": "Ce projet sert de base pour valider la mise en page du portfolio. Il regroupe une sélection de photographies issues du dossier Projet test. Chaque image peut être ouverte en plein écran pour apprécier le détail et la composition.",
+    "category": "Photo",
+    "year": 2026
+  }
+]

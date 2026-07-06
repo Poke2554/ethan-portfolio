@@ -6,6 +6,7 @@
     "dev": "powershell -ExecutionPolicy Bypass -File ./scripts/dev.ps1",
     "dev:clean": "powershell -ExecutionPolicy Bypass -File ./scripts/dev.ps1",
     "dev:fast": "next dev",
+    "admin": "next dev",
     "build": "next build",
     "build:static": "cross-env NEXT_OUTPUT=export next build",
     "start": "next start",

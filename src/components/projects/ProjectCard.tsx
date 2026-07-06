@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { OptimizedImage } from "@/components/media/OptimizedImage";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/types/project";
 import { isVideoMedia } from "@/types/media";
 
 type ProjectCardProps = {

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/types/project";
 
 type ProjectsGridProps = {
   projects: Project[];

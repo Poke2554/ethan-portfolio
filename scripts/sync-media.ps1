@@ -16,6 +16,8 @@ function Copy-MediaFiles {
     return
   }
 
+  New-Item -ItemType Directory -Force -Path $Destination | Out-Null
+
   Get-ChildItem $Source -File | Where-Object {
     $_.Extension -match '\.(jpg|jpeg|png|webp|mp4)$'
   } | ForEach-Object {
@@ -28,21 +30,30 @@ Write-Host "Sync accueil..."
 Copy-MediaFiles -Source (Join-Path $portfolioRoot "Photo accueil") -Destination $homeDest
 
 Write-Host "Sync projets..."
-Get-ChildItem (Join-Path $portfolioRoot "Projet test") -Directory -ErrorAction SilentlyContinue | ForEach-Object {
-  $dest = Join-Path $projectsRoot $_.Name
-  New-Item -ItemType Directory -Force -Path $dest | Out-Null
-  Copy-MediaFiles -Source $_.FullName -Destination $dest
-}
 
-$flatProject = Join-Path $portfolioRoot "Projet test"
-if (Test-Path $flatProject) {
-  $flatFiles = Get-ChildItem $flatProject -File | Where-Object {
+# Sous-dossiers dans Projet test (ex: projet-test, mon-projet...)
+$projetTestRoot = Join-Path $portfolioRoot "Projet test"
+if (Test-Path $projetTestRoot) {
+  Get-ChildItem $projetTestRoot -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+    $dest = Join-Path $projectsRoot $_.Name
+    Copy-MediaFiles -Source $_.FullName -Destination $dest
+  }
+
+  # Fichiers à la racine de Projet test -> projet-test
+  $flatFiles = Get-ChildItem $projetTestRoot -File | Where-Object {
     $_.Extension -match '\.(jpg|jpeg|png|webp|mp4)$'
   }
   if ($flatFiles.Count -gt 0) {
-    $dest = Join-Path $projectsRoot "projet-test"
-    New-Item -ItemType Directory -Force -Path $dest | Out-Null
-    Copy-MediaFiles -Source $flatProject -Destination $dest
+    Copy-MediaFiles -Source $projetTestRoot -Destination (Join-Path $projectsRoot "projet-test")
+  }
+}
+
+# Dossier Projets générique (optionnel)
+$projetsRoot = Join-Path $portfolioRoot "Projets"
+if (Test-Path $projetsRoot) {
+  Get-ChildItem $projetsRoot -Directory -ErrorAction SilentlyContinue | ForEach-Object {
+    $dest = Join-Path $projectsRoot $_.Name
+    Copy-MediaFiles -Source $_.FullName -Destination $dest
   }
 }
 
