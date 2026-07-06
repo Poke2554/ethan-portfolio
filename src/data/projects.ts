@@ -49,17 +49,6 @@ export const projects: Project[] = [
     cover: projetTestMedia[0],
     media: projetTestMedia,
   },
-  {
-    slug: "lumieres-du-soir",
-    title: "Lumières du soir",
-    excerpt: "Série intimiste — jeux de lumière naturelle et atmosphères douces.",
-    description:
-      "Une exploration des heures dorées et des contrastes subtils. Cette série met en avant la texture de la lumière naturelle, les ombres portées et la palette chaude du crépuscule. Chaque image invite à ralentir et à observer.",
-    category: "Photo",
-    year: 2025,
-    cover: projetTestMedia[3],
-    media: projetTestMedia.slice(2, 7),
-  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
