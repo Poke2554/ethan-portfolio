@@ -1,5 +1,3 @@
-"use client";
-
 import { KodakPrint } from "@/components/home/KodakPrint";
 import { homeHero, homeWallColumns } from "@/data/site";
 
@@ -18,7 +16,7 @@ export function HomeWall() {
                   <KodakPrint
                     key={photo.id}
                     photo={photo}
-                    priority={columnIndex === 0 && rowIndex < 2}
+                    priority={rowIndex === 0 && columnIndex < 2}
                     className={rowIndex > 0 ? "wall-stack-item" : ""}
                     style={{ zIndex: rowIndex + 1 }}
                   />

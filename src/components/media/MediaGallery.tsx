@@ -1,10 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { MediaLightbox } from "@/components/media/MediaLightbox";
+import { OptimizedImage } from "@/components/media/OptimizedImage";
 import { OptimizedVideo } from "@/components/media/OptimizedVideo";
-import { resolveMediaSrc } from "@/lib/media";
 import { isVideoMedia, type MediaItem } from "@/types/media";
+
+const MediaLightbox = dynamic(
+  () => import("@/components/media/MediaLightbox").then((mod) => mod.MediaLightbox),
+  { ssr: false },
+);
 
 type MediaGalleryProps = {
   items: MediaItem[];
@@ -27,12 +32,13 @@ export function MediaGallery({ items }: MediaGalleryProps) {
             {isVideoMedia(item) ? (
               <OptimizedVideo media={item} className="h-full w-full object-cover" />
             ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={resolveMediaSrc(item.src)}
-                alt={item.alt}
-                loading={index < 4 ? "eager" : "lazy"}
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+              <OptimizedImage
+                media={{ ...item, priority: index < 2 }}
+                fill
+                sizes="(max-width: 768px) 50vw, 33vw"
+                quality={70}
+                placeholder="empty"
+                className="transition duration-500 group-hover:scale-[1.03]"
               />
             )}
             <span className="pointer-events-none absolute inset-0 bg-black/0 transition group-hover:bg-black/15" />

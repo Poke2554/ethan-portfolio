@@ -21,12 +21,14 @@ export function KodakPrint({ photo, priority = false, className = "", style }: K
             type: "image",
             src: photo.src,
             alt: photo.alt,
-            width: 800,
-            height: 1000,
+            width: 420,
+            height: 525,
             priority,
           }}
           fill
-          sizes="(max-width: 768px) 28vw, 236px"
+          sizes="(max-width: 768px) 22vw, 210px"
+          quality={70}
+          placeholder="empty"
         />
       </div>
       <div className="kodak-strip" aria-hidden="true" />

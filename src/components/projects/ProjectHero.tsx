@@ -17,6 +17,8 @@ export function ProjectHero({ project }: ProjectHeroProps) {
           media={{ ...heroImage, priority: true }}
           fill
           sizes="100vw"
+          quality={75}
+          placeholder="empty"
           className="scale-105 object-cover opacity-90"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/30" />

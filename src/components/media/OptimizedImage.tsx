@@ -8,6 +8,8 @@ type OptimizedImageProps = {
   sizes?: string;
   fill?: boolean;
   objectFit?: "cover" | "contain";
+  quality?: number;
+  placeholder?: "blur" | "empty";
 };
 
 export function OptimizedImage({
@@ -16,32 +18,35 @@ export function OptimizedImage({
   sizes = imageSizes.gallery,
   fill = false,
   objectFit = "cover",
+  quality = 75,
+  placeholder,
 }: OptimizedImageProps) {
   const src = resolveMediaSrc(media.src);
   const width = media.width ?? 1600;
   const height = media.height ?? 1200;
+  const usePriority = media.priority ?? false;
+  const useBlur = placeholder ?? (usePriority ? "blur" : "empty");
 
   const sharedProps = {
     src,
     alt: media.alt,
     className: `${objectFit === "cover" ? "object-cover" : "object-contain"} ${className}`,
     sizes,
-    quality: 82,
-    placeholder: "blur" as const,
-    blurDataURL: getBlurDataURL(media.blurDataURL),
-    priority: media.priority ?? false,
+    quality,
+    priority: usePriority,
+    ...(useBlur === "blur"
+      ? {
+          placeholder: "blur" as const,
+          blurDataURL: getBlurDataURL(media.blurDataURL),
+        }
+      : {
+          placeholder: "empty" as const,
+        }),
   };
 
   if (fill) {
     return <Image {...sharedProps} alt={media.alt} fill />;
   }
 
-  return (
-    <Image
-      {...sharedProps}
-      alt={media.alt}
-      width={width}
-      height={height}
-    />
-  );
+  return <Image {...sharedProps} alt={media.alt} width={width} height={height} />;
 }

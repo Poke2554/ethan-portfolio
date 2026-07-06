@@ -128,9 +128,12 @@ export function AdminPanel() {
         <p className="mt-3 text-sm text-muted">Mot de passe par défaut : ethan2026 (modifiable dans .env.local)</p>
         <input
           type="password"
+          dir="ltr"
+          autoComplete="current-password"
+          spellCheck={false}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="mt-6 w-full border border-border px-4 py-3 text-sm"
+          className="mt-6 w-full border border-border px-4 py-3 font-sans text-sm"
           placeholder="Mot de passe"
           onKeyDown={(e) => e.key === "Enter" && login()}
         />
@@ -222,7 +225,7 @@ export function AdminPanel() {
                       slug: editing.slug || slugify(title),
                     });
                   }}
-                  className="mt-2 w-full border border-border px-3 py-2 text-sm"
+                  className="mt-2 w-full border border-border px-3 py-2 font-sans text-sm"
                 />
               </label>
 
@@ -232,6 +235,7 @@ export function AdminPanel() {
                   value={editing.slug}
                   onChange={(e) => setEditing({ ...editing, slug: slugify(e.target.value) })}
                   className="mt-2 w-full border border-border px-3 py-2 font-mono text-sm"
+                  dir="ltr"
                 />
               </label>
 
@@ -241,7 +245,7 @@ export function AdminPanel() {
                   value={editing.excerpt}
                   onChange={(e) => setEditing({ ...editing, excerpt: e.target.value })}
                   rows={2}
-                  className="mt-2 w-full border border-border px-3 py-2 text-sm"
+                  className="mt-2 w-full border border-border px-3 py-2 font-sans text-sm"
                 />
               </label>
 
@@ -251,7 +255,7 @@ export function AdminPanel() {
                   value={editing.description}
                   onChange={(e) => setEditing({ ...editing, description: e.target.value })}
                   rows={4}
-                  className="mt-2 w-full border border-border px-3 py-2 text-sm"
+                  className="mt-2 w-full border border-border px-3 py-2 font-sans text-sm"
                 />
               </label>
 
@@ -261,7 +265,7 @@ export function AdminPanel() {
                   <select
                     value={editing.category}
                     onChange={(e) => setEditing({ ...editing, category: e.target.value as ProjectCategory })}
-                    className="mt-2 w-full border border-border px-3 py-2 text-sm"
+                    className="mt-2 w-full border border-border px-3 py-2 font-sans text-sm"
                   >
                     <option value="Photo">Photo</option>
                     <option value="Vidéo">Vidéo</option>
@@ -275,7 +279,7 @@ export function AdminPanel() {
                     type="number"
                     value={editing.year}
                     onChange={(e) => setEditing({ ...editing, year: Number(e.target.value) })}
-                    className="mt-2 w-full border border-border px-3 py-2 text-sm"
+                    className="mt-2 w-full border border-border px-3 py-2 font-sans text-sm"
                   />
                 </label>
               </div>

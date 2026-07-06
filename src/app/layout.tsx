@@ -8,12 +8,14 @@ import "./globals.css";
 const display = Syne({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["600", "700"],
+  display: "swap",
 });
 
 const sans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ton-domaine.com";
