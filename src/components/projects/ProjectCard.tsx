@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { OptimizedImage } from "@/components/media/OptimizedImage";
 import type { Project } from "@/types/project";
-import { isVideoMedia } from "@/types/media";
 
 type ProjectCardProps = {
   project: Project;
@@ -9,17 +8,11 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, priority = false }: ProjectCardProps) {
-  const cover =
-    project.cover.type === "image"
-      ? { ...project.cover, priority }
-      : {
-          type: "image" as const,
-          src: project.cover.poster,
-          alt: project.cover.alt,
-          width: 1200,
-          height: 1500,
-          priority,
-        };
+  const cover = { ...project.cover, priority };
+  const isVideoProject =
+    project.category === "Vidéo" ||
+    project.category === "Photo & Vidéo" ||
+    project.media.some((item) => item.type === "video" || item.type === "youtube");
 
   return (
     <Link href={`/projets/${project.slug}`} className="group block">
@@ -33,7 +26,7 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
             placeholder="empty"
             className="transition duration-700 group-hover:scale-[1.02]"
           />
-          {isVideoMedia(project.cover) && (
+          {isVideoProject && (
             <span className="absolute right-4 top-4 text-[10px] uppercase tracking-[0.24em] text-white">
               Vidéo
             </span>

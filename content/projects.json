@@ -53,7 +53,11 @@
     "excerpt": "À écrire",
     "description": "À écrire",
     "category": "Vidéo",
-    "year": 2026
+    "year": 2026,
+    "youtubeUrls": [
+      "https://youtu.be/bJT-ajcfkY0",
+      "https://youtu.be/lysLHzRiTfU"
+    ]
   },
   {
     "slug": "fashionedito",
@@ -61,6 +65,9 @@
     "excerpt": "À écrire",
     "description": "À écrire",
     "category": "Vidéo",
-    "year": 2026
+    "year": 2026,
+    "youtubeUrls": [
+      "https://youtu.be/0sCtqiKHYsA"
+    ]
   }
 ]

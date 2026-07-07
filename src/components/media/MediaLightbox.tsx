@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { resolveMediaSrc } from "@/lib/media";
-import { isVideoMedia, type MediaItem } from "@/types/media";
+import { YouTubeEmbed } from "@/components/media/YouTubeEmbed";
+import { isVideoMedia, isYouTubeMedia, type MediaItem } from "@/types/media";
 
 type MediaLightboxProps = {
   items: MediaItem[];
@@ -82,8 +83,10 @@ export function MediaLightbox({ items, initialIndex, onClose }: MediaLightboxPro
         </>
       )}
 
-      <div className="flex max-h-[82vh] w-full max-w-6xl flex-1 items-center justify-center">
-        {isVideoMedia(item) ? (
+      <div className="flex w-full max-w-5xl flex-1 flex-col items-center justify-center">
+        {isYouTubeMedia(item) ? (
+          <YouTubeEmbed videoId={item.videoId} title={item.alt} className="max-h-[75vh] w-full" />
+        ) : isVideoMedia(item) ? (
           <video
             className="max-h-[82vh] max-w-full"
             controls

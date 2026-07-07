@@ -10,6 +10,7 @@ const emptyProject = (): ProjectMeta => ({
   description: "",
   category: "Photo",
   year: new Date().getFullYear(),
+  youtubeUrls: [],
 });
 
 function slugify(value: string) {
@@ -26,8 +27,20 @@ export function AdminPanel() {
   const [authed, setAuthed] = useState(false);
   const [projects, setProjects] = useState<ProjectMeta[]>([]);
   const [editing, setEditing] = useState<ProjectMeta | null>(null);
+  const [youtubeDraft, setYoutubeDraft] = useState<string[]>([""]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const openEditor = (project: ProjectMeta) => {
+    const urls = project.youtubeUrls ?? [];
+    setYoutubeDraft(urls.length > 0 ? urls : [""]);
+    setEditing(project);
+  };
+
+  const closeEditor = () => {
+    setEditing(null);
+    setYoutubeDraft([""]);
+  };
 
   const headers = useCallback(
     () => ({
@@ -93,10 +106,18 @@ export function AdminPanel() {
       return;
     }
 
-    const exists = projects.findIndex((p) => p.slug === editing.slug);
-    const next = exists >= 0 ? projects.map((p, i) => (i === exists ? editing : p)) : [...projects, editing];
+    const projectToSave: ProjectMeta = {
+      ...editing,
+      youtubeUrls: youtubeDraft.map((url) => url.trim()).filter(Boolean),
+    };
+
+    const exists = projects.findIndex((p) => p.slug === projectToSave.slug);
+    const next =
+      exists >= 0
+        ? projects.map((p, i) => (i === exists ? projectToSave : p))
+        : [...projects, projectToSave];
     setProjects(next);
-    setEditing(null);
+    closeEditor();
     setStatus("Projet ajouté à la liste — clique « Sauvegarder » pour enregistrer.");
   };
 
@@ -187,7 +208,7 @@ export function AdminPanel() {
                 </p>
               </div>
               <div className="flex gap-2">
-                <button type="button" onClick={() => setEditing(project)} className="btn-secondary">
+                <button type="button" onClick={() => openEditor(project)} className="btn-secondary">
                   Modifier
                 </button>
                 <button type="button" onClick={() => removeProject(project.slug)} className="btn-secondary">
@@ -201,7 +222,7 @@ export function AdminPanel() {
 
       <button
         type="button"
-        onClick={() => setEditing(emptyProject())}
+        onClick={() => openEditor(emptyProject())}
         className="btn-primary mt-6"
       >
         + Nouveau projet
@@ -284,13 +305,53 @@ export function AdminPanel() {
                 </label>
               </div>
 
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-muted">Liens YouTube</p>
+                <div className="mt-2 space-y-2">
+                  {youtubeDraft.map((url, index) => (
+                    <div key={index} className="flex gap-2">
+                      <input
+                        value={url}
+                        onChange={(e) => {
+                          const next = [...youtubeDraft];
+                          next[index] = e.target.value;
+                          setYoutubeDraft(next);
+                        }}
+                        dir="ltr"
+                        placeholder="https://youtube.com/watch?v=XXXXX"
+                        className="min-w-0 flex-1 border border-border px-3 py-2 font-mono text-xs"
+                      />
+                      {youtubeDraft.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => setYoutubeDraft(youtubeDraft.filter((_, i) => i !== index))}
+                          className="btn-secondary shrink-0 px-3"
+                          aria-label="Supprimer ce lien"
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setYoutubeDraft([...youtubeDraft, ""])}
+                  className="btn-secondary mt-2"
+                >
+                  + Ajouter une vidéo
+                </button>
+              </div>
+
               <p className="rounded border border-border bg-surface px-3 py-3 text-xs leading-6 text-muted">
-                Ensuite, copie tes photos dans :<br />
+                <strong>Photos :</strong> copie dans{" "}
                 <span className="font-mono text-foreground">
                   public/media/projects/{editing.slug || "ton-slug"}/
                 </span>
                 <br />
-                Ou lance <span className="font-mono">npm run sync-media</span> si tu les as sur E:\Dossier\Portfolio
+                <strong>Vidéos :</strong> upload sur YouTube (Non répertoriée) → colle les liens ci-dessus
+                <br />
+                Ou <span className="font-mono">npm run sync-media</span> pour les photos depuis E:\Dossier\Portfolio
               </p>
             </div>
 
@@ -298,7 +359,7 @@ export function AdminPanel() {
               <button type="button" onClick={saveEditing} className="btn-primary">
                 Valider
               </button>
-              <button type="button" onClick={() => setEditing(null)} className="btn-secondary">
+              <button type="button" onClick={closeEditor} className="btn-secondary">
                 Annuler
               </button>
             </div>

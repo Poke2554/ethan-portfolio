@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
+import { extractYouTubeId, youTubeThumbnail } from "@/lib/youtube";
 import type { Project, ProjectMeta } from "@/types/project";
-import type { MediaItem } from "@/types/media";
+import type { ImageMedia, MediaItem } from "@/types/media";
 
 const projectsJsonPath = path.join(process.cwd(), "content", "projects.json");
 const mediaRoot = path.join(process.cwd(), "public", "media", "projects");
@@ -15,7 +16,7 @@ function readProjectsMeta(): ProjectMeta[] {
   return JSON.parse(raw) as ProjectMeta[];
 }
 
-function loadMediaFromSlug(slug: string, title: string): MediaItem[] {
+function loadLocalMedia(slug: string, title: string): MediaItem[] {
   const dir = path.join(mediaRoot, slug);
   if (!fs.existsSync(dir)) return [];
 
@@ -46,7 +47,35 @@ function loadMediaFromSlug(slug: string, title: string): MediaItem[] {
   });
 }
 
-function fallbackCover(slug: string, title: string): MediaItem {
+function loadYouTubeMedia(urls: string[] | undefined, title: string): MediaItem[] {
+  if (!urls?.length) return [];
+
+  return urls
+    .map((url, index) => {
+      const videoId = extractYouTubeId(url);
+      if (!videoId) return null;
+
+      return {
+        type: "youtube" as const,
+        videoId,
+        src: url.trim(),
+        alt: `${title} — vidéo ${index + 1}`,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => item !== null);
+}
+
+function youtubeCover(videoId: string, alt: string): ImageMedia {
+  return {
+    type: "image",
+    src: youTubeThumbnail(videoId),
+    alt,
+    width: 1280,
+    height: 720,
+  };
+}
+
+function fallbackCover(slug: string, title: string): ImageMedia {
   return {
     type: "image",
     src: `projects/${slug}/.placeholder`,
@@ -56,14 +85,35 @@ function fallbackCover(slug: string, title: string): MediaItem {
   };
 }
 
+function mediaToCover(media: MediaItem | undefined, slug: string, title: string): ImageMedia {
+  const item = media ?? fallbackCover(slug, title);
+
+  if (item.type === "youtube") {
+    return youtubeCover(item.videoId, item.alt);
+  }
+
+  if (item.type === "video") {
+    return {
+      type: "image",
+      src: item.poster,
+      alt: item.alt,
+      width: item.width ?? 1600,
+      height: item.height ?? 900,
+    };
+  }
+
+  return item;
+}
+
 export function getProjects(): Project[] {
   return readProjectsMeta().map((meta) => {
-    const media = loadMediaFromSlug(meta.slug, meta.title);
-    return {
-      ...meta,
-      cover: media[0] ?? fallbackCover(meta.slug, meta.title),
-      media,
-    };
+    const localMedia = loadLocalMedia(meta.slug, meta.title);
+    const youtubeMedia = loadYouTubeMedia(meta.youtubeUrls, meta.title);
+    const media = [...localMedia, ...youtubeMedia];
+
+    const cover = mediaToCover(media[0], meta.slug, meta.title);
+
+    return { ...meta, cover, media };
   });
 }
 
@@ -87,19 +137,7 @@ export function getLatestProject(): Project | undefined {
 }
 
 export function getProjectFirstImage(project: Project) {
-  const firstMedia = project.media[0] ?? project.cover;
-
-  if (firstMedia.type === "image") {
-    return firstMedia;
-  }
-
-  return {
-    type: "image" as const,
-    src: firstMedia.poster,
-    alt: firstMedia.alt,
-    width: firstMedia.width ?? 1600,
-    height: firstMedia.height ?? 1067,
-  };
+  return mediaToCover(project.media[0], project.slug, project.title);
 }
 
 export function getProjectsMeta(): ProjectMeta[] {
