@@ -92,7 +92,9 @@ export function AdminPanel() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Erreur de sauvegarde");
-      setStatus("Projets sauvegardés. Ajoute tes photos dans le dossier indiqué, puis git push.");
+      setStatus(
+        "Projets sauvegardés en local. Pour mettre en ligne sur Vercel : git add . → git commit -m \"...\" → git push",
+      );
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Erreur de sauvegarde");
     } finally {

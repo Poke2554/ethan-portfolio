@@ -170,15 +170,25 @@ export function getAllProjectSlugs(): string[] {
   return readProjectsMeta().map((project) => project.slug);
 }
 
+function sortProjectsByRecency(projects: Project[], meta: ProjectMeta[]): Project[] {
+  return [...projects].sort((a, b) => {
+    if (b.year !== a.year) return b.year - a.year;
+    return meta.findIndex((m) => m.slug === b.slug) - meta.findIndex((m) => m.slug === a.slug);
+  });
+}
+
 export function getLatestProject(): Project | undefined {
   const projects = getProjects();
   if (projects.length === 0) return undefined;
 
-  const meta = readProjectsMeta();
-  return [...projects].sort((a, b) => {
-    if (b.year !== a.year) return b.year - a.year;
-    return meta.findIndex((m) => m.slug === b.slug) - meta.findIndex((m) => m.slug === a.slug);
-  })[0];
+  return sortProjectsByRecency(projects, readProjectsMeta())[0];
+}
+
+export function getLatestPhotoProject(): Project | undefined {
+  const photoProjects = getProjects().filter((project) => project.category === "Photo");
+  if (photoProjects.length === 0) return undefined;
+
+  return sortProjectsByRecency(photoProjects, readProjectsMeta())[0];
 }
 
 export function getProjectFirstImage(project: Project) {

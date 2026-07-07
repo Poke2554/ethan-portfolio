@@ -2,6 +2,7 @@ export type { Project, ProjectCategory, ProjectMeta } from "@/types/project";
 export {
   getAllProjectSlugs,
   getLatestProject,
+  getLatestPhotoProject,
   getProjectBySlug,
   getProjectFirstImage,
   getProjectPhotoPath,

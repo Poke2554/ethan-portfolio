@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { OptimizedImage } from "@/components/media/OptimizedImage";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { getLatestProject, getProjectFirstImage } from "@/data/projects";
+import { getLatestPhotoProject, getProjectFirstImage } from "@/data/projects";
 import { siteConfig } from "@/data/site";
 
 export function RecentWorkSection() {
-  const latestProject = getLatestProject();
+  const latestProject = getLatestPhotoProject();
   const previewImage = latestProject ? getProjectFirstImage(latestProject) : null;
 
   return (

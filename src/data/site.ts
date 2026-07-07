@@ -90,7 +90,7 @@ export const marqueeItems = [
   "Photo",
   "Portrait",
   "Events",
-  "Architectures",
+  "Architecture",
   "Vidéo",
   "Food",
   "Shooting Produits",
