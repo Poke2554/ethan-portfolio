@@ -1,8 +1,9 @@
 export const siteConfig = {
   name: "Ethan",
+  fullName: "Ethan Frati",
   role: "Photographe & vidéaste",
   description:
-    "Portfolio photo et vidéo — portraits, food, architecture, events, street photo, shoot produits.",
+    "Portfolio photo et vidéo d'Ethan Frati — portraits, food, architecture, events, street photo, shoot produits. Basé à Paris.",
   email: "contact@ethanfrati.fr",
   phone: "06 52 28 59 74",
   instagram: "https://instagram.com/ethanfrati",

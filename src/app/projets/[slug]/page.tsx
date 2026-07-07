@@ -19,11 +19,11 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   const project = getProjectBySlug(slug);
 
   if (!project) {
-    return { title: `Projet — ${siteConfig.name}` };
+    return { title: `Projet — ${siteConfig.fullName}` };
   }
 
   return {
-    title: `${project.title} — ${siteConfig.name}`,
+    title: `${project.title} — ${siteConfig.fullName}`,
     description: project.excerpt,
   };
 }

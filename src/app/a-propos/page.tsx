@@ -5,7 +5,7 @@ import { OptimizedImage } from "@/components/media/OptimizedImage";
 import { aboutContent, siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: `À propos — ${siteConfig.name}`,
+  title: `À propos — ${siteConfig.fullName}`,
   description: aboutContent.intro,
 };
 
