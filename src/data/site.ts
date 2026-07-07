@@ -23,6 +23,8 @@ export const aboutContent = {
     },
   ],
   bio: "Basé à Paris, passionnée de photo et vidéo sur mon temps libre.",
+  /** Photo grande à gauche sur /a-propos — chemin sous public/media/ */
+  portrait: "projects/toulouse/IMG_1145.jpg",
 };
 
 export const navItems = [

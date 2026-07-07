@@ -2,47 +2,52 @@
   {
     "slug": "paris",
     "title": "Paris",
-    "excerpt": "À écrire",
+    "excerpt": "Street Photo / Architecture",
     "description": "À écrire",
     "category": "Photo",
-    "year": 2025
+    "year": 2025,
+    "youtubeUrls": []
   },
   {
     "slug": "busan",
     "title": "Busan",
-    "excerpt": "À écrire",
+    "excerpt": "Street Photo / Architecture",
     "description": "À écrire",
     "category": "Photo",
-    "year": 2025
+    "year": 2025,
+    "youtubeUrls": []
   },
   {
     "slug": "gyeongju",
     "title": "Gyeongju",
-    "excerpt": "À écrire",
+    "excerpt": "Street Photo / Architecture",
     "description": "À écrire",
     "category": "Photo",
-    "year": 2025
+    "year": 2025,
+    "youtubeUrls": []
   },
   {
     "slug": "seoul",
     "title": "Seoul",
-    "excerpt": "À écrire",
+    "excerpt": "Street Photo / Architecture",
     "description": "À écrire",
     "category": "Photo",
-    "year": 2025
+    "year": 2025,
+    "youtubeUrls": []
   },
   {
     "slug": "toulouse",
     "title": "Toulouse",
-    "excerpt": "À écrire",
+    "excerpt": "Street Photo / Portrait",
     "description": "À écrire",
     "category": "Photo",
-    "year": 2025
+    "year": 2025,
+    "youtubeUrls": []
   },
   {
     "slug": "mercimabel",
     "title": "Merci Mabel",
-    "excerpt": "À écrire",
+    "excerpt": "Food",
     "description": "À écrire",
     "category": "Vidéo",
     "year": 2026,
@@ -54,7 +59,7 @@
   {
     "slug": "fashionedito",
     "title": "Fashion Edito",
-    "excerpt": "À écrire",
+    "excerpt": "Court Métrage",
     "description": "À écrire",
     "category": "Vidéo",
     "year": 2026,
