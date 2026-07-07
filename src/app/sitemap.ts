@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllProjectSlugs } from "@/data/projects";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ton-domaine.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ethanfrati.fr";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const projectPages = getAllProjectSlugs().map((slug) => ({
