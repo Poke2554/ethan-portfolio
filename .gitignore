@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Vidéos lourdes — GitHub max 100 Mo/fichier. Héberge sur Vimeo/YouTube et mets le lien dans le panel admin.
+*.mov
+*.mp4
+*.MOV
+*.MP4

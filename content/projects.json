@@ -6,5 +6,61 @@
     "description": "Ce projet sert de base pour valider la mise en page du portfolio. Il regroupe une sélection de photographies issues du dossier Projet test. Chaque image peut être ouverte en plein écran pour apprécier le détail et la composition.",
     "category": "Photo",
     "year": 2026
+  },
+  {
+    "slug": "paris",
+    "title": "Paris",
+    "excerpt": "À écrire",
+    "description": "À écrire",
+    "category": "Photo",
+    "year": 2025
+  },
+  {
+    "slug": "busan",
+    "title": "Busan",
+    "excerpt": "À écrire",
+    "description": "À écrire",
+    "category": "Photo",
+    "year": 2025
+  },
+  {
+    "slug": "gyeongju",
+    "title": "Gyeongju",
+    "excerpt": "À écrire",
+    "description": "À écrire",
+    "category": "Photo",
+    "year": 2025
+  },
+  {
+    "slug": "seoul",
+    "title": "Seoul",
+    "excerpt": "À écrire",
+    "description": "À écrire",
+    "category": "Photo",
+    "year": 2025
+  },
+  {
+    "slug": "toulouse",
+    "title": "Toulouse",
+    "excerpt": "À écrire",
+    "description": "À écrire",
+    "category": "Photo",
+    "year": 2025
+  },
+  {
+    "slug": "mercimabel",
+    "title": "Merci Mabel",
+    "excerpt": "À écrire",
+    "description": "À écrire",
+    "category": "Vidéo",
+    "year": 2026
+  },
+  {
+    "slug": "fashionedito",
+    "title": "Fashion Edito",
+    "excerpt": "À écrire",
+    "description": "À écrire",
+    "category": "Vidéo",
+    "year": 2026
   }
 ]
