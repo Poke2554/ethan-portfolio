@@ -126,21 +126,6 @@ export default function AboutPage() {
                     </a>
                   </dd>
                 </div>
-                <div>
-                  <dt className="text-[10px] uppercase tracking-[0.28em] text-background/45">
-                    Vimeo
-                  </dt>
-                  <dd className="mt-3">
-                    <a
-                      href={siteConfig.vimeo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm transition hover:text-background/70"
-                    >
-                      Voir les vidéos
-                    </a>
-                  </dd>
-                </div>
               </dl>
             </div>
           </div>
