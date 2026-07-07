@@ -204,7 +204,9 @@ export function AdminPanel() {
                   {project.category} · {project.year} · /projets/{project.slug}
                 </p>
                 <p className="mt-3 font-mono text-xs text-muted">
-                  Photos → public/media/projects/{project.slug}/
+                  Dossier → public/media/projects/{project.slug}/
+                  <br />
+                  Couverture → {project.slug}.jpg
                 </p>
               </div>
               <div className="flex gap-2">
@@ -344,10 +346,17 @@ export function AdminPanel() {
               </div>
 
               <p className="rounded border border-border bg-surface px-3 py-3 text-xs leading-6 text-muted">
-                <strong>Photos :</strong> copie dans{" "}
+                <strong>Couverture :</strong> dépose{" "}
+                <span className="font-mono text-foreground">
+                  {editing.slug || "ton-slug"}.jpg
+                </span>{" "}
+                dans{" "}
                 <span className="font-mono text-foreground">
                   public/media/projects/{editing.slug || "ton-slug"}/
-                </span>
+                </span>{" "}
+                (utilisée sur la carte et l&apos;en-tête, pas dans la galerie)
+                <br />
+                <strong>Photos :</strong> autres images dans le même dossier
                 <br />
                 <strong>Vidéos :</strong> upload sur YouTube (Non répertoriée) → colle les liens ci-dessus
                 <br />

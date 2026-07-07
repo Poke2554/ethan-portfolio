@@ -10,6 +10,46 @@ const mediaRoot = path.join(process.cwd(), "public", "media", "projects");
 const imagePattern = /\.(jpe?g|png|webp)$/i;
 const videoPattern = /\.mp4$/i;
 
+function isCoverFile(slug: string, file: string): boolean {
+  const lower = file.toLowerCase();
+  if (lower.startsWith("cover.")) return true;
+  return imagePattern.test(lower) && lower.startsWith(`${slug.toLowerCase()}.`);
+}
+
+function findCustomCover(slug: string, title: string): ImageMedia | null {
+  const dir = path.join(mediaRoot, slug);
+  if (!fs.existsSync(dir)) return null;
+
+  const candidates = [
+    `${slug}.jpg`,
+    `${slug}.jpeg`,
+    `${slug}.png`,
+    `${slug}.webp`,
+    "cover.jpg",
+    "cover.jpeg",
+    "cover.png",
+    "cover.webp",
+  ];
+
+  for (const file of candidates) {
+    const match = fs
+      .readdirSync(dir)
+      .find((entry) => entry.localeCompare(file, undefined, { sensitivity: "accent" }) === 0);
+
+    if (match) {
+      return {
+        type: "image",
+        src: `projects/${slug}/${match}`,
+        alt: `${title} — couverture`,
+        width: 1600,
+        height: 2000,
+      };
+    }
+  }
+
+  return null;
+}
+
 function readProjectsMeta(): ProjectMeta[] {
   if (!fs.existsSync(projectsJsonPath)) return [];
   const raw = fs.readFileSync(projectsJsonPath, "utf-8");
@@ -22,7 +62,10 @@ function loadLocalMedia(slug: string, title: string): MediaItem[] {
 
   const files = fs
     .readdirSync(dir)
-    .filter((file) => imagePattern.test(file) || videoPattern.test(file))
+    .filter(
+      (file) =>
+        !isCoverFile(slug, file) && (imagePattern.test(file) || videoPattern.test(file)),
+    )
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
   return files.map((file, index) => {
@@ -111,7 +154,9 @@ export function getProjects(): Project[] {
     const youtubeMedia = loadYouTubeMedia(meta.youtubeUrls, meta.title);
     const media = [...localMedia, ...youtubeMedia];
 
-    const cover = mediaToCover(media[0], meta.slug, meta.title);
+    const cover =
+      findCustomCover(meta.slug, meta.title) ??
+      mediaToCover(media[0], meta.slug, meta.title);
 
     return { ...meta, cover, media };
   });
@@ -137,7 +182,7 @@ export function getLatestProject(): Project | undefined {
 }
 
 export function getProjectFirstImage(project: Project) {
-  return mediaToCover(project.media[0], project.slug, project.title);
+  return project.cover;
 }
 
 export function getProjectsMeta(): ProjectMeta[] {

@@ -2,11 +2,10 @@ export const siteConfig = {
   name: "Ethan",
   role: "Photographe & vidéaste",
   description:
-    "Portfolio photo et vidéo — portraits, reportages et direction artistique pour marques et particuliers.",
-  email: "hello@example.com",
-  phone: "+33 6 00 00 00 00",
-  instagram: "https://instagram.com",
-  vimeo: "https://vimeo.com",
+    "Portfolio photo et vidéo — portraits, food, architecture, events.",
+  email: "contact@ethanfrati.fr",
+  phone: "06 52 28 59 74",
+  instagram: "https://instagram.com/ethanfrati",
   location: "Paris, France",
 };
 
