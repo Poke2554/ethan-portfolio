@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Ethan",
   role: "Photographe & vidéaste",
   description:
-    "Portfolio photo et vidéo — portraits, food, architecture, events.",
+    "Portfolio photo et vidéo — portraits, food, architecture, events, street photo, shoot produits.",
   email: "contact@ethanfrati.fr",
   phone: "06 52 28 59 74",
   instagram: "https://instagram.com/ethanfrati",
@@ -15,18 +15,14 @@ export const aboutContent = {
   services: [
     {
       title: "Photo",
-      description: "Portraits, lifestyle, reportages et shootings produits.",
+      description: "Portraits, architecture et shootings produits, street photo.",
     },
     {
       title: "Vidéo",
-      description: "Clips, contenus réseaux sociaux et captation d’événements.",
-    },
-    {
-      title: "Direction artistique",
-      description: "Moodboards, cadrage et cohérence visuelle de bout en bout.",
+      description: "Contenus réseaux sociaux food, pub produits, events.",
     },
   ],
-  bio: "Basé à Paris, je collabore avec des marques, des créateurs et des particuliers. Chaque projet est pensé comme une série : une ambiance, un rythme, une narration visuelle claire.",
+  bio: "Basé à Paris, passionnée de photo et vidéo sur mon temps libre.",
 };
 
 export const navItems = [
@@ -49,24 +45,27 @@ const wallImage = (src: string, alt: string, rotation: number): WallPhoto => ({
   rotation,
 });
 
-const pool = [
-  wallImage("home/IMG_0493.jpg", "Portfolio — photo 1", -3),
-  wallImage("home/IMG_0588.jpg", "Portfolio — photo 2", 2),
-  wallImage("home/IMG_1145.jpg", "Portfolio — photo 3", -2),
-  wallImage("home/IMG_1346.jpg", "Portfolio — photo 4", 3),
-  wallImage("home/IMG_1359.jpg", "Portfolio — photo 5", -4),
-  wallImage("home/IMG_7668.jpg", "Portfolio — photo 6", 2),
-  wallImage("projects/projet-test/IMG_7759.jpg", "Portfolio — photo 7", -2),
-  wallImage("projects/projet-test/IMG_7867.jpg", "Portfolio — photo 8", 3),
-  wallImage("projects/projet-test/IMG_7957.jpg", "Portfolio — photo 9", -3),
-  wallImage("projects/projet-test/IMG_9707.jpg", "Portfolio — photo 10", 2),
-  wallImage("projects/projet-test/IMG_0493.jpg", "Portfolio — photo 11", -2),
-  wallImage("projects/projet-test/IMG_1145.jpg", "Portfolio — photo 12", 4),
-  wallImage("projects/projet-test/IMG_1359.jpg", "Portfolio — photo 13", -3),
-  wallImage("projects/projet-test/IMG_7668.jpg", "Portfolio — photo 14", 2),
-  wallImage("projects/projet-test/IMG_0588.jpg", "Portfolio — photo 15", -2),
-  wallImage("projects/projet-test/IMG_1346.jpg", "Portfolio — photo 16", 3),
-];
+/** Photos du mur polaroid accueil — fichiers dans public/media/home/ */
+const homePhotos = [
+  "IMG_0493.jpg",
+  "IMG_1346.jpg",
+  "IMG_7668.jpg",
+  "IMG_7681.jpg",
+  "IMG_7684.jpg",
+  "IMG_7754.jpg",
+  "IMG_7873.jpg",
+  "IMG_7876.jpg",
+  "IMG_7892.jpg",
+  "IMG_7893.jpg",
+  "IMG_8026.jpg",
+  "IMG_9743.jpg",
+] as const;
+
+const homeRotations = [-3, 2, -2, 3, -4, 2, -2, 3, -3, 2, -2, 4];
+
+const pool = homePhotos.map((file, index) =>
+  wallImage(`home/${file}`, `Portfolio — photo ${index + 1}`, homeRotations[index] ?? 0),
+);
 
 /** 4 colonnes × 3 photos empilées par colonne */
 export const homeWallColumns: WallPhoto[][] = [
@@ -86,11 +85,11 @@ export const homeHero = {
 };
 
 export const marqueeItems = [
+  "Photo",
   "Portrait",
-  "Reportage",
-  "Lifestyle",
-  "Direction artistique",
-  "Captation vidéo",
-  "Éditorial",
-  "Paris",
+  "Events",
+  "Architectures",
+  "Vidéo",
+  "Food",
+  "Shooting Produits",
 ];

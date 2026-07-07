@@ -37,7 +37,7 @@ export default function AboutPage() {
           <OptimizedImage
             media={{
               type: "image",
-              src: "home/IMG_1145.jpg",
+              src: "home/IMG_7681.jpg",
               alt: `${siteConfig.name} — portfolio photo`,
               width: 1600,
               height: 2000,
