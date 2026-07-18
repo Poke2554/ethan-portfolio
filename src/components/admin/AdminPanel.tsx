@@ -13,6 +13,7 @@ const emptyProject = (): ProjectMeta => ({
   category: "Photo",
   year: new Date().getFullYear(),
   youtubeUrls: [],
+  instagramUrls: [],
 });
 
 function slugify(value: string) {
@@ -30,18 +31,22 @@ export function AdminPanel() {
   const [projects, setProjects] = useState<ProjectMeta[]>([]);
   const [editing, setEditing] = useState<ProjectMeta | null>(null);
   const [youtubeDraft, setYoutubeDraft] = useState<string[]>([""]);
+  const [instagramDraft, setInstagramDraft] = useState<string[]>([""]);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
   const openEditor = (project: ProjectMeta) => {
-    const urls = project.youtubeUrls ?? [];
-    setYoutubeDraft(urls.length > 0 ? urls : [""]);
+    const youtubeUrls = project.youtubeUrls ?? [];
+    const instagramUrls = project.instagramUrls ?? [];
+    setYoutubeDraft(youtubeUrls.length > 0 ? youtubeUrls : [""]);
+    setInstagramDraft(instagramUrls.length > 0 ? instagramUrls : [""]);
     setEditing(project);
   };
 
   const closeEditor = () => {
     setEditing(null);
     setYoutubeDraft([""]);
+    setInstagramDraft([""]);
   };
 
   const headers = useCallback(
@@ -113,6 +118,7 @@ export function AdminPanel() {
     const projectToSave: ProjectMeta = {
       ...editing,
       youtubeUrls: youtubeDraft.map((url) => url.trim()).filter(Boolean),
+      instagramUrls: instagramDraft.map((url) => url.trim()).filter(Boolean),
     };
 
     const exists = projects.findIndex((p) => p.slug === projectToSave.slug);
@@ -367,7 +373,45 @@ export function AdminPanel() {
                   onClick={() => setYoutubeDraft([...youtubeDraft, ""])}
                   className="btn-secondary mt-2"
                 >
-                  + Ajouter une vidéo
+                  + Ajouter une vidéo YouTube
+                </button>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-muted">Liens Instagram (Reels / posts)</p>
+                <div className="mt-2 space-y-2">
+                  {instagramDraft.map((url, index) => (
+                    <div key={index} className="flex gap-2">
+                      <input
+                        value={url}
+                        onChange={(e) => {
+                          const next = [...instagramDraft];
+                          next[index] = e.target.value;
+                          setInstagramDraft(next);
+                        }}
+                        dir="ltr"
+                        placeholder="https://instagram.com/reel/XXXXX"
+                        className="min-w-0 flex-1 border border-border px-3 py-2 font-mono text-xs"
+                      />
+                      {instagramDraft.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => setInstagramDraft(instagramDraft.filter((_, i) => i !== index))}
+                          className="btn-secondary shrink-0 px-3"
+                          aria-label="Supprimer ce lien Instagram"
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setInstagramDraft([...instagramDraft, ""])}
+                  className="btn-secondary mt-2"
+                >
+                  + Ajouter un Reel Instagram
                 </button>
               </div>
 
@@ -384,7 +428,9 @@ export function AdminPanel() {
                 <br />
                 <strong>Photos :</strong> autres images dans le même dossier
                 <br />
-                <strong>Vidéos :</strong> upload sur YouTube (Non répertoriée) → colle les liens ci-dessus
+                <strong>Vidéos YouTube :</strong> upload (Non répertoriée) → liens ci-dessus
+                <br />
+                <strong>Reels Instagram :</strong> copie le lien du Reel → section Instagram ci-dessus (lecteur intégré)
                 <br />
                 Ou <span className="font-mono">npm run sync-media</span> pour les photos depuis E:\Dossier\Portfolio
               </p>

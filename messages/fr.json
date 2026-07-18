@@ -30,7 +30,12 @@
     "aboutProject": "À propos du projet",
     "mediaCount": "{count, plural, one {# média} other {# médias}}",
     "videoBadge": "Vidéo",
-    "emptyGallery": "Aucun média pour ce projet. Ajoute des photos ou des liens YouTube dans le panel admin."
+    "emptyGallery": "Aucun média pour ce projet. Ajoute des photos, des liens YouTube ou Instagram dans le panel admin.",
+    "enlarge": "Agrandir",
+    "close": "Fermer ✕",
+    "previous": "Média précédent",
+    "next": "Média suivant",
+    "lightboxLabel": "Visualisation en plein écran"
   },
   "categories": {
     "Photo": "Photo",

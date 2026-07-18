@@ -3,10 +3,17 @@
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { InstagramPreview } from "@/components/media/InstagramPreview";
 import { OptimizedImage } from "@/components/media/OptimizedImage";
 import { OptimizedVideo } from "@/components/media/OptimizedVideo";
 import { youTubeThumbnail } from "@/lib/youtube";
-import { isVideoMedia, isYouTubeMedia, type MediaItem } from "@/types/media";
+import {
+  isEmbedMedia,
+  isInstagramMedia,
+  isVideoMedia,
+  isYouTubeMedia,
+  type MediaItem,
+} from "@/types/media";
 
 const MediaLightbox = dynamic(
   () => import("@/components/media/MediaLightbox").then((mod) => mod.MediaLightbox),
@@ -16,6 +23,12 @@ const MediaLightbox = dynamic(
 type MediaGalleryProps = {
   items: MediaItem[];
 };
+
+function mediaKey(item: MediaItem, index: number) {
+  if (item.type === "youtube") return `youtube-${item.videoId}`;
+  if (item.type === "instagram") return `instagram-${item.shortcode}`;
+  return `${item.type}-${item.src}-${index}`;
+}
 
 export function MediaGallery({ items }: MediaGalleryProps) {
   const t = useTranslations("projects");
@@ -30,11 +43,11 @@ export function MediaGallery({ items }: MediaGalleryProps) {
       <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 md:gap-4">
         {items.map((item, index) => (
           <button
-            key={`${item.type}-${"videoId" in item ? item.videoId : item.src}-${index}`}
+            key={mediaKey(item, index)}
             type="button"
             className="group relative aspect-square cursor-pointer overflow-hidden border border-border bg-neutral-100"
             onClick={() => setLightboxIndex(index)}
-            aria-label={`Lire : ${item.alt}`}
+            aria-label={item.alt}
           >
             {isYouTubeMedia(item) ? (
               <>
@@ -51,6 +64,8 @@ export function MediaGallery({ items }: MediaGalleryProps) {
                   </span>
                 </span>
               </>
+            ) : isInstagramMedia(item) ? (
+              <InstagramPreview kind={item.kind} alt={item.alt} />
             ) : isVideoMedia(item) ? (
               <OptimizedVideo media={item} className="h-full w-full object-cover" />
             ) : (
@@ -63,12 +78,12 @@ export function MediaGallery({ items }: MediaGalleryProps) {
                 className="transition duration-500 group-hover:scale-[1.03]"
               />
             )}
-            {!isYouTubeMedia(item) && (
+            {!isEmbedMedia(item) && (
               <>
                 <span className="pointer-events-none absolute inset-0 bg-black/0 transition group-hover:bg-black/15" />
                 <span className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition group-hover:opacity-100">
                   <span className="rounded-full border border-white/60 bg-black/45 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white">
-                    Agrandir
+                    {t("enlarge")}
                   </span>
                 </span>
               </>

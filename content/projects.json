@@ -8,7 +8,8 @@
     "descriptionEn": "A meeting between an open-air work of art and a child full of dreams. I fell in love with it as a child; it became the backdrop to my own story. Here, I portray the city I love so much.",
     "category": "Photo",
     "year": 2025,
-    "youtubeUrls": []
+    "youtubeUrls": [],
+    "instagramUrls": []
   },
   {
     "slug": "busan",
@@ -19,7 +20,8 @@
     "descriptionEn": "Between tradition and modernity,\nRaw, untamed Korea,\nBlue neon lights, a hyperactive metropolis,\nAn elusive, enduring balance",
     "category": "Photo",
     "year": 2025,
-    "youtubeUrls": []
+    "youtubeUrls": [],
+    "instagramUrls": []
   },
   {
     "slug": "gyeongju",
@@ -30,7 +32,8 @@
     "descriptionEn": "Capturing the quiet poetry of a city where the past never fades away...",
     "category": "Photo",
     "year": 2025,
-    "youtubeUrls": []
+    "youtubeUrls": [],
+    "instagramUrls": []
   },
   {
     "slug": "seoul",
@@ -41,7 +44,8 @@
     "descriptionEn": "In this maze of glass and neon, I searched for silence, details, and breath.",
     "category": "Photo",
     "year": 2025,
-    "youtubeUrls": []
+    "youtubeUrls": [],
+    "instagramUrls": []
   },
   {
     "slug": "toulouse",
@@ -52,7 +56,8 @@
     "descriptionEn": "Photographing Toulouse means capturing that pink brick glowing at dusk and the gentle way of life suspended above the Garonne.",
     "category": "Photo",
     "year": 2025,
-    "youtubeUrls": []
+    "youtubeUrls": [],
+    "instagramUrls": []
   },
   {
     "slug": "mercimabel",
@@ -66,7 +71,8 @@
     "youtubeUrls": [
       "https://youtu.be/bJT-ajcfkY0",
       "https://youtu.be/lysLHzRiTfU"
-    ]
+    ],
+    "instagramUrls": []
   },
   {
     "slug": "fashionedito",
@@ -79,6 +85,7 @@
     "year": 2026,
     "youtubeUrls": [
       "https://youtu.be/0sCtqiKHYsA"
-    ]
+    ],
+    "instagramUrls": []
   }
 ]

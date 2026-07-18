@@ -1,10 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { resolveMediaSrc } from "@/lib/media";
+import { InstagramEmbed } from "@/components/media/InstagramEmbed";
 import { YouTubeEmbed } from "@/components/media/YouTubeEmbed";
-import { isVideoMedia, isYouTubeMedia, type MediaItem } from "@/types/media";
+import { resolveMediaSrc } from "@/lib/media";
+import { isInstagramMedia, isVideoMedia, isYouTubeMedia, type MediaItem } from "@/types/media";
 
 type MediaLightboxProps = {
   items: MediaItem[];
@@ -13,6 +15,7 @@ type MediaLightboxProps = {
 };
 
 export function MediaLightbox({ items, initialIndex, onClose }: MediaLightboxProps) {
+  const t = useTranslations("projects");
   const [index, setIndex] = useState(initialIndex);
   const item = items[index];
 
@@ -52,14 +55,14 @@ export function MediaLightbox({ items, initialIndex, onClose }: MediaLightboxPro
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/95 p-4 md:p-8"
       role="dialog"
       aria-modal="true"
-      aria-label="Visualisation en plein écran"
+      aria-label={t("lightboxLabel")}
     >
       <button
         type="button"
         className="absolute right-4 top-4 z-10 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm uppercase tracking-[0.18em] text-white transition hover:bg-white/20 md:right-8 md:top-8"
         onClick={onClose}
       >
-        Fermer ✕
+        {t("close")}
       </button>
 
       {items.length > 1 && (
@@ -68,7 +71,7 @@ export function MediaLightbox({ items, initialIndex, onClose }: MediaLightboxPro
             type="button"
             className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/25 bg-white/10 px-4 py-3 text-lg text-white transition hover:bg-white/20 md:left-8"
             onClick={showPrevious}
-            aria-label="Photo précédente"
+            aria-label={t("previous")}
           >
             ‹
           </button>
@@ -76,7 +79,7 @@ export function MediaLightbox({ items, initialIndex, onClose }: MediaLightboxPro
             type="button"
             className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/25 bg-white/10 px-4 py-3 text-lg text-white transition hover:bg-white/20 md:right-8"
             onClick={showNext}
-            aria-label="Photo suivante"
+            aria-label={t("next")}
           >
             ›
           </button>
@@ -86,6 +89,13 @@ export function MediaLightbox({ items, initialIndex, onClose }: MediaLightboxPro
       <div className="flex w-full max-w-5xl flex-1 flex-col items-center justify-center">
         {isYouTubeMedia(item) ? (
           <YouTubeEmbed videoId={item.videoId} title={item.alt} className="max-h-[75vh] w-full" />
+        ) : isInstagramMedia(item) ? (
+          <InstagramEmbed
+            shortcode={item.shortcode}
+            kind={item.kind}
+            title={item.alt}
+            className="max-h-[82vh]"
+          />
         ) : isVideoMedia(item) ? (
           <video
             className="max-h-[82vh] max-w-full"

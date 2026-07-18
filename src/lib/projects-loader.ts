@@ -158,13 +158,7 @@ function mediaToCover(media: MediaItem | undefined, slug: string, title: string)
   }
 
   if (item.type === "instagram") {
-    return {
-      type: "image",
-      src: `projects/${slug}/.instagram-${item.shortcode}`,
-      alt: item.alt,
-      width: 1080,
-      height: item.kind === "post" ? 1080 : 1920,
-    };
+    return fallbackCover(slug, title);
   }
 
   if (item.type === "video") {
@@ -185,7 +179,8 @@ export function getProjects(locale: Locale = "fr"): Project[] {
     const localized = localizeProjectMeta(meta, locale);
     const localMedia = loadLocalMedia(meta.slug, localized.title);
     const youtubeMedia = loadYouTubeMedia(meta.youtubeUrls, localized.title);
-    const media = [...localMedia, ...youtubeMedia];
+    const instagramMedia = loadInstagramMedia(meta.instagramUrls, localized.title);
+    const media = [...localMedia, ...youtubeMedia, ...instagramMedia];
 
     const cover =
       findCustomCover(meta.slug, localized.title) ??

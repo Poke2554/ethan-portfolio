@@ -12,7 +12,9 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
   const isVideoProject =
     project.category === "Vidéo" ||
     project.category === "Photo & Vidéo" ||
-    project.media.some((item) => item.type === "video" || item.type === "youtube");
+    project.media.some(
+      (item) => item.type === "video" || item.type === "youtube" || item.type === "instagram",
+    );
 
   return (
     <Link
