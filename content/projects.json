@@ -3,7 +3,9 @@
     "slug": "paris",
     "title": "Paris",
     "excerpt": "Street Photo / Architecture",
+    "excerptEn": "Street Photography / Architecture",
     "description": "Une rencontre entre une œuvre d'art à ciel ouvert et un enfant plein de rêves. J'en suis tombé amoureux petit, elle est devenue le décor de ma propre histoire. Ici, je dépeins la ville que j'aime tant.",
+    "descriptionEn": "A meeting between an open-air work of art and a child full of dreams. I fell in love with it as a child; it became the backdrop to my own story. Here, I portray the city I love so much.",
     "category": "Photo",
     "year": 2025,
     "youtubeUrls": []
@@ -12,7 +14,9 @@
     "slug": "busan",
     "title": "Busan",
     "excerpt": "Street Photo / Architecture",
+    "excerptEn": "Street Photography / Architecture",
     "description": "Entre tradition et modernité,\nCorée brute et indomptable,\nNéons bleutés, métropole survoltée,\nEquilibre insaisissable, impérissable",
+    "descriptionEn": "Between tradition and modernity,\nRaw, untamed Korea,\nBlue neon lights, a hyperactive metropolis,\nAn elusive, enduring balance",
     "category": "Photo",
     "year": 2025,
     "youtubeUrls": []
@@ -21,7 +25,9 @@
     "slug": "gyeongju",
     "title": "Gyeongju",
     "excerpt": "Street Photo / Architecture",
+    "excerptEn": "Street Photography / Architecture",
     "description": "Se saisir de la poésie discrète d'une ville où le passé ne s'efface pas...",
+    "descriptionEn": "Capturing the quiet poetry of a city where the past never fades away...",
     "category": "Photo",
     "year": 2025,
     "youtubeUrls": []
@@ -30,7 +36,9 @@
     "slug": "seoul",
     "title": "Seoul",
     "excerpt": "Street Photo / Architecture",
+    "excerptEn": "Street Photography / Architecture",
     "description": "Dans ce labyrinthe de verre et de néons, j'ai cherché le silence, les détails, les respirations.",
+    "descriptionEn": "In this maze of glass and neon, I searched for silence, details, and breath.",
     "category": "Photo",
     "year": 2025,
     "youtubeUrls": []
@@ -39,7 +47,9 @@
     "slug": "toulouse",
     "title": "Toulouse",
     "excerpt": "Street Photo / Portrait",
+    "excerptEn": "Street Photography / Portrait",
     "description": "Photographier Toulouse, c’est capturer cette brique rose qui s’embrase au crépuscule et cette douceur de vivre suspendue au-dessus de la Garonne.",
+    "descriptionEn": "Photographing Toulouse means capturing that pink brick glowing at dusk and the gentle way of life suspended above the Garonne.",
     "category": "Photo",
     "year": 2025,
     "youtubeUrls": []
@@ -48,7 +58,9 @@
     "slug": "mercimabel",
     "title": "Merci Mabel",
     "excerpt": "Food",
+    "excerptEn": "Food",
     "description": "Réalisation vidéo pour un Coffee Shop à destination de leur réseaux sociaux.",
+    "descriptionEn": "Video production for a coffee shop, created for their social media channels.",
     "category": "Vidéo",
     "year": 2026,
     "youtubeUrls": [
@@ -60,7 +72,9 @@
     "slug": "fashionedito",
     "title": "Fashion Edito",
     "excerpt": "Court Métrage",
+    "excerptEn": "Short Film",
     "description": "Regard artistique et fragments de mélancolie : une réinterprétation de mon vestiaire.",
+    "descriptionEn": "An artistic gaze and fragments of melancholy: a reinterpretation of my wardrobe.",
     "category": "Vidéo",
     "year": 2026,
     "youtubeUrls": [

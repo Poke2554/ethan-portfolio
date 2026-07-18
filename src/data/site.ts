@@ -1,9 +1,6 @@
 export const siteConfig = {
   name: "Ethan",
   fullName: "Ethan Frati",
-  role: "Photographe & vidéaste",
-  description:
-    "Portfolio photo et vidéo d'Ethan Frati — portraits, food, architecture, events, street photo, shoot produits. Basé à Paris.",
   email: "contact@ethanfrati.fr",
   phone: "06 52 28 59 74",
   instagram: "https://instagram.com/ethanfrati",
@@ -11,28 +8,9 @@ export const siteConfig = {
 };
 
 export const aboutContent = {
-  intro:
-    "Je raconte des histoires visuelles à travers la photo et la vidéo. Mon approche privilégie la lumière naturelle, la composition sobre et une direction artistique fidèle à l’identité de chaque projet.",
-  services: [
-    {
-      title: "Photo",
-      description: "Portraits, architecture et shootings produits, street photo.",
-    },
-    {
-      title: "Vidéo",
-      description: "Contenus réseaux sociaux food, pub produits, events.",
-    },
-  ],
-  bio: "Basé à Paris, passionnée de photo et vidéo sur mon temps libre.",
   /** Photo grande à gauche sur /a-propos — chemin sous public/media/ */
   portrait: "projects/toulouse/IMG_1145.jpg",
 };
-
-export const navItems = [
-  { label: "Accueil", href: "/" },
-  { label: "Projets", href: "/projets" },
-  { label: "À propos", href: "/a-propos" },
-];
 
 export type WallPhoto = {
   id: string;
@@ -79,20 +57,3 @@ export const homeWallColumns: WallPhoto[][] = [
 ];
 
 export const homeWallPhotos = pool;
-
-export const homeHero = {
-  label: "Portfolio",
-  title: siteConfig.name,
-  subtitle: siteConfig.role,
-  hint: "Défiler",
-};
-
-export const marqueeItems = [
-  "Photo",
-  "Portrait",
-  "Events",
-  "Architecture",
-  "Vidéo",
-  "Food",
-  "Shooting Produits",
-];

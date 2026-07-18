@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "role": "Photographe & vidéaste",
+    "description": "Portfolio photo et vidéo d'Ethan Frati — portraits, food, architecture, events, street photo, shoot produits. Basé à Paris."
+  },
+  "nav": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "about": "À propos",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "home": {
+    "heroLabel": "Portfolio",
+    "heroHint": "Défiler",
+    "recentLabel": "01 — Sélection",
+    "recentTitle": "Travaux récents",
+    "viewProjects": "Voir les projets",
+    "about": "À propos"
+  },
+  "marquee": {
+    "items": ["Photo", "Portrait", "Events", "Architecture", "Vidéo", "Food", "Shooting Produits"]
+  },
+  "projects": {
+    "pageLabel": "01 — Projets",
+    "pageTitle": "Sélection",
+    "pageIntro": "Une liste de projets photo et vidéo. Cliquez sur un projet pour lire la description complète et parcourir les médias associés.",
+    "metadataDescription": "Découvrez les projets photo et vidéo du portfolio.",
+    "back": "← Retour aux projets",
+    "aboutProject": "À propos du projet",
+    "mediaCount": "{count, plural, one {# média} other {# médias}}",
+    "videoBadge": "Vidéo",
+    "emptyGallery": "Aucun média pour ce projet. Ajoute des photos ou des liens YouTube dans le panel admin."
+  },
+  "categories": {
+    "Photo": "Photo",
+    "Vidéo": "Vidéo",
+    "Photo & Vidéo": "Photo & Vidéo"
+  },
+  "about": {
+    "metadataTitle": "À propos",
+    "pageLabel": "02 — À propos",
+    "servicesLabel": "Ce que je fais",
+    "intro": "Je raconte des histoires visuelles à travers la photo et la vidéo. Mon approche privilégie la lumière naturelle, la composition sobre et une direction artistique fidèle à l'identité de chaque projet.",
+    "bio": "Basé à Paris, passionné de photo et vidéo sur mon temps libre.",
+    "services": {
+      "photo": {
+        "title": "Photo",
+        "description": "Portraits, architecture et shootings produits, street photo."
+      },
+      "video": {
+        "title": "Vidéo",
+        "description": "Contenus réseaux sociaux food, pub produits, events."
+      }
+    },
+    "contactLabel": "Contact",
+    "contactTitle": "Travaillons ensemble",
+    "contactIntro": "Pour un projet photo, une captation vidéo ou une collaboration, écrivez-moi directement. Je réponds sous 48h.",
+    "email": "Email",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "instagram": "Instagram",
+    "viewProfile": "Voir le profil",
+    "viewProjects": "Voir les projets",
+    "contactMe": "Me contacter",
+    "copyEmail": "Copier l'email",
+    "copied": "Copié !",
+    "portraitAlt": "{name} — portfolio photo"
+  },
+  "footer": {
+    "email": "Email"
+  },
+  "language": {
+    "switch": "Langue",
+    "fr": "FR",
+    "en": "EN"
+  }
+}

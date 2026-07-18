@@ -8,6 +8,8 @@ const emptyProject = (): ProjectMeta => ({
   title: "",
   excerpt: "",
   description: "",
+  excerptEn: "",
+  descriptionEn: "",
   category: "Photo",
   year: new Date().getFullYear(),
   youtubeUrls: [],
@@ -283,6 +285,28 @@ export function AdminPanel() {
                   className="mt-2 w-full border border-border px-3 py-2 font-sans text-sm"
                 />
               </label>
+
+              <div className="rounded border border-border bg-surface px-3 py-3">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted">Version anglaise</p>
+                <label className="mt-4 block text-xs uppercase tracking-[0.2em] text-muted">
+                  Short summary (EN)
+                  <textarea
+                    value={editing.excerptEn ?? ""}
+                    onChange={(e) => setEditing({ ...editing, excerptEn: e.target.value })}
+                    rows={2}
+                    className="mt-2 w-full border border-border px-3 py-2 font-sans text-sm"
+                  />
+                </label>
+                <label className="mt-4 block text-xs uppercase tracking-[0.2em] text-muted">
+                  Description (EN)
+                  <textarea
+                    value={editing.descriptionEn ?? ""}
+                    onChange={(e) => setEditing({ ...editing, descriptionEn: e.target.value })}
+                    rows={4}
+                    className="mt-2 w-full border border-border px-3 py-2 font-sans text-sm"
+                  />
+                </label>
+              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <label className="block text-xs uppercase tracking-[0.2em] text-muted">

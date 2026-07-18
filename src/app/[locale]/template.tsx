@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { useEffect, useRef, type ReactNode } from "react";
 
 export default function Template({ children }: { children: ReactNode }) {
@@ -14,10 +14,6 @@ export default function Template({ children }: { children: ReactNode }) {
     }
     window.scrollTo(0, 0);
   }, [pathname]);
-
-  if (pathname.startsWith("/admin")) {
-    return children;
-  }
 
   return (
     <div key={pathname} className="page-enter">

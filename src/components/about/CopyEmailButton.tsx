@@ -1,8 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export function CopyEmailButton({ email }: { email: string }) {
+  const t = useTranslations("about");
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -17,7 +19,7 @@ export function CopyEmailButton({ email }: { email: string }) {
 
   return (
     <button type="button" onClick={handleCopy} className="btn-secondary mt-4">
-      {copied ? "Copié !" : "Copier l'email"}
+      {copied ? t("copied") : t("copyEmail")}
     </button>
   );
 }

@@ -1,11 +1,18 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { OptimizedImage } from "@/components/media/OptimizedImage";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { getLatestPhotoProject, getProjectFirstImage } from "@/data/projects";
-import { siteConfig } from "@/data/site";
+import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 
-export function RecentWorkSection() {
-  const latestProject = getLatestPhotoProject();
+type RecentWorkSectionProps = {
+  locale: Locale;
+};
+
+export async function RecentWorkSection({ locale }: RecentWorkSectionProps) {
+  const t = await getTranslations("home");
+  const meta = await getTranslations("metadata");
+  const latestProject = getLatestPhotoProject(locale);
   const previewImage = latestProject ? getProjectFirstImage(latestProject) : null;
 
   return (
@@ -16,7 +23,7 @@ export function RecentWorkSection() {
             <div className="flex max-w-xl flex-col items-center gap-6 md:flex-row md:items-end md:gap-8">
               {latestProject && previewImage && (
                 <Link
-                  href={`/projets/${latestProject.slug}`}
+                  href={{ pathname: "/projets/[slug]", params: { slug: latestProject.slug } }}
                   className="group shrink-0 overflow-hidden border border-border bg-neutral-100"
                 >
                   <div className="relative h-28 w-24 md:h-32 md:w-28">
@@ -34,20 +41,20 @@ export function RecentWorkSection() {
               )}
 
               <div>
-                <p className="text-[11px] uppercase tracking-[0.4em] text-muted">01 — Sélection</p>
+                <p className="text-[11px] uppercase tracking-[0.4em] text-muted">{t("recentLabel")}</p>
                 <h2 className="mt-4 font-display text-3xl uppercase tracking-[-0.03em] md:text-4xl">
-                  Travaux récents
+                  {t("recentTitle")}
                 </h2>
-                <p className="mt-4 text-sm leading-7 text-muted">{siteConfig.description}</p>
+                <p className="mt-4 text-sm leading-7 text-muted">{meta("description")}</p>
               </div>
             </div>
 
             <div className="flex flex-wrap justify-center gap-4 md:justify-end">
               <Link href="/projets" className="btn-primary">
-                Voir les projets
+                {t("viewProjects")}
               </Link>
               <Link href="/a-propos" className="btn-secondary">
-                À propos
+                {t("about")}
               </Link>
             </div>
           </div>

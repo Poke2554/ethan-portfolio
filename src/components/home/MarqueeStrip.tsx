@@ -1,7 +1,9 @@
-import { marqueeItems } from "@/data/site";
+import { getTranslations } from "next-intl/server";
 
-export function MarqueeStrip() {
-  const track = [...marqueeItems, ...marqueeItems];
+export async function MarqueeStrip() {
+  const t = await getTranslations("marquee");
+  const items = t.raw("items") as string[];
+  const track = [...items, ...items];
 
   return (
     <div className="relative z-30 overflow-hidden border-y border-border bg-white py-3" aria-hidden="true">

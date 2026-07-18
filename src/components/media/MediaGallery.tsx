@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { OptimizedImage } from "@/components/media/OptimizedImage";
 import { OptimizedVideo } from "@/components/media/OptimizedVideo";
@@ -17,14 +18,11 @@ type MediaGalleryProps = {
 };
 
 export function MediaGallery({ items }: MediaGalleryProps) {
+  const t = useTranslations("projects");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   if (items.length === 0) {
-    return (
-      <p className="text-sm text-muted">
-        Aucun média pour ce projet. Ajoute des photos ou des liens YouTube dans le panel admin.
-      </p>
-    );
+    return <p className="text-sm text-muted">{t("emptyGallery")}</p>;
   }
 
   return (

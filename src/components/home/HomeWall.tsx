@@ -1,7 +1,11 @@
+import { getTranslations } from "next-intl/server";
 import { KodakPrint } from "@/components/home/KodakPrint";
-import { homeHero, homeWallColumns } from "@/data/site";
+import { homeWallColumns, siteConfig } from "@/data/site";
 
-export function HomeWall() {
+export async function HomeWall() {
+  const t = await getTranslations("home");
+  const meta = await getTranslations("metadata");
+
   return (
     <section id="home-wall" className="relative bg-white">
       <div className="wall-surface relative min-h-screen overflow-hidden">
@@ -31,21 +35,19 @@ export function HomeWall() {
         <div className="pointer-events-none absolute inset-0 z-[25] flex items-center justify-center px-6">
           <div className="hero-text-wrap mx-auto max-w-xl px-4 py-6 text-center">
             <p className="hero-label-shadow text-[10px] uppercase tracking-[0.42em] text-foreground/75">
-              {homeHero.label}
+              {t("heroLabel")}
             </p>
             <h1 className="hero-title-shadow mt-4 font-display text-[clamp(2.25rem,8vw,4.75rem)] font-semibold uppercase leading-[0.92] tracking-[-0.03em] text-foreground">
-              {homeHero.title}
+              {siteConfig.name}
             </h1>
             <p className="hero-label-shadow mx-auto mt-4 max-w-xs text-[11px] uppercase tracking-[0.26em] text-foreground/70">
-              {homeHero.subtitle}
+              {meta("role")}
             </p>
           </div>
         </div>
 
         <div className="pointer-events-none absolute bottom-8 left-1/2 z-[26] flex -translate-x-1/2 flex-col items-center gap-2">
-          <span className="text-[9px] uppercase tracking-[0.35em] text-foreground/40">
-            {homeHero.hint}
-          </span>
+          <span className="text-[9px] uppercase tracking-[0.35em] text-foreground/40">{t("heroHint")}</span>
           <span className="scroll-hint-arrow block h-8 w-px bg-foreground/30" />
         </div>
       </div>

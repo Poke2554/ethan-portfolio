@@ -7,13 +7,19 @@ export type ProjectMeta = {
   title: string;
   excerpt: string;
   description: string;
+  titleEn?: string;
+  excerptEn?: string;
+  descriptionEn?: string;
   category: ProjectCategory;
   year: number;
-  /** Liens YouTube — un par ligne, ex: https://youtube.com/watch?v=XXXX */
+  /** Liens YouTube — ex: https://youtube.com/watch?v=XXXX */
   youtubeUrls?: string[];
+  /** Liens Instagram (Reels, posts vidéo) — ex: https://instagram.com/reel/XXXX */
+  instagramUrls?: string[];
 };
 
 export type Project = ProjectMeta & {
+  categoryLabel: string;
   cover: ImageMedia;
   media: MediaItem[];
 };

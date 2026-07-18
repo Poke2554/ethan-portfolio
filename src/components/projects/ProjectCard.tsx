@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { OptimizedImage } from "@/components/media/OptimizedImage";
+import { Link } from "@/i18n/navigation";
 import type { Project } from "@/types/project";
 
 type ProjectCardProps = {
@@ -15,7 +15,10 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
     project.media.some((item) => item.type === "video" || item.type === "youtube");
 
   return (
-    <Link href={`/projets/${project.slug}`} className="group block">
+    <Link
+      href={{ pathname: "/projets/[slug]", params: { slug: project.slug } }}
+      className="group block"
+    >
       <article>
         <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100">
           <OptimizedImage
@@ -28,13 +31,13 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
           />
           {isVideoProject && (
             <span className="absolute right-4 top-4 text-[10px] uppercase tracking-[0.24em] text-white">
-              Vidéo
+              {project.categoryLabel}
             </span>
           )}
         </div>
         <div className="mt-5 space-y-2 border-t border-border pt-5">
           <div className="flex items-center justify-between gap-4 text-[10px] uppercase tracking-[0.24em] text-muted">
-            <span>{project.category}</span>
+            <span>{project.categoryLabel}</span>
             <span>{project.year}</span>
           </div>
           <h2 className="font-display text-2xl uppercase tracking-[-0.02em]">{project.title}</h2>

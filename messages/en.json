@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "role": "Photographer & videographer",
+    "description": "Photo and video portfolio by Ethan Frati — portraits, food, architecture, events, street photography, product shoots. Based in Paris."
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "heroLabel": "Portfolio",
+    "heroHint": "Scroll",
+    "recentLabel": "01 — Selection",
+    "recentTitle": "Recent work",
+    "viewProjects": "View projects",
+    "about": "About"
+  },
+  "marquee": {
+    "items": ["Photo", "Portrait", "Events", "Architecture", "Video", "Food", "Product Shoots"]
+  },
+  "projects": {
+    "pageLabel": "01 — Projects",
+    "pageTitle": "Selection",
+    "pageIntro": "A curated list of photo and video projects. Click on a project to read the full description and browse the associated media.",
+    "metadataDescription": "Discover the photo and video projects in the portfolio.",
+    "back": "← Back to projects",
+    "aboutProject": "About the project",
+    "mediaCount": "{count, plural, one {# medium} other {# media}}",
+    "videoBadge": "Video",
+    "emptyGallery": "No media for this project yet. Add photos or YouTube links in the admin panel."
+  },
+  "categories": {
+    "Photo": "Photo",
+    "Vidéo": "Video",
+    "Photo & Vidéo": "Photo & Video"
+  },
+  "about": {
+    "metadataTitle": "About",
+    "pageLabel": "02 — About",
+    "servicesLabel": "What I do",
+    "intro": "I tell visual stories through photography and video. My approach favours natural light, clean composition, and artistic direction that stays true to each project's identity.",
+    "bio": "Based in Paris, passionate about photography and video in my spare time.",
+    "services": {
+      "photo": {
+        "title": "Photo",
+        "description": "Portraits, architecture and product shoots, street photography."
+      },
+      "video": {
+        "title": "Video",
+        "description": "Food social content, product ads, events."
+      }
+    },
+    "contactLabel": "Contact",
+    "contactTitle": "Let's work together",
+    "contactIntro": "For a photo project, video shoot or collaboration, reach out directly. I reply within 48 hours.",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "instagram": "Instagram",
+    "viewProfile": "View profile",
+    "viewProjects": "View projects",
+    "contactMe": "Contact me",
+    "copyEmail": "Copy email",
+    "copied": "Copied!",
+    "portraitAlt": "{name} — photo portfolio"
+  },
+  "footer": {
+    "email": "Email"
+  },
+  "language": {
+    "switch": "Language",
+    "fr": "FR",
+    "en": "EN"
+  }
+}

@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
+import type { Locale } from "@/i18n/routing";
+import { localizeCategory, localizeProjectMeta } from "@/lib/project-i18n";
 import { extractYouTubeId, youTubeThumbnail } from "@/lib/youtube";
+import { parseInstagramUrl } from "@/lib/instagram";
 import type { Project, ProjectMeta } from "@/types/project";
 import type { ImageMedia, MediaItem } from "@/types/media";
 
@@ -108,6 +111,25 @@ function loadYouTubeMedia(urls: string[] | undefined, title: string): MediaItem[
     .filter((item): item is NonNullable<typeof item> => item !== null);
 }
 
+function loadInstagramMedia(urls: string[] | undefined, title: string): MediaItem[] {
+  if (!urls?.length) return [];
+
+  return urls
+    .map((url, index) => {
+      const parsed = parseInstagramUrl(url);
+      if (!parsed) return null;
+
+      return {
+        type: "instagram" as const,
+        shortcode: parsed.shortcode,
+        kind: parsed.kind,
+        src: url.trim(),
+        alt: `${title} — Instagram ${index + 1}`,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => item !== null);
+}
+
 function youtubeCover(videoId: string, alt: string): ImageMedia {
   return {
     type: "image",
@@ -135,6 +157,16 @@ function mediaToCover(media: MediaItem | undefined, slug: string, title: string)
     return youtubeCover(item.videoId, item.alt);
   }
 
+  if (item.type === "instagram") {
+    return {
+      type: "image",
+      src: `projects/${slug}/.instagram-${item.shortcode}`,
+      alt: item.alt,
+      width: 1080,
+      height: item.kind === "post" ? 1080 : 1920,
+    };
+  }
+
   if (item.type === "video") {
     return {
       type: "image",
@@ -148,22 +180,29 @@ function mediaToCover(media: MediaItem | undefined, slug: string, title: string)
   return item;
 }
 
-export function getProjects(): Project[] {
+export function getProjects(locale: Locale = "fr"): Project[] {
   return readProjectsMeta().map((meta) => {
-    const localMedia = loadLocalMedia(meta.slug, meta.title);
-    const youtubeMedia = loadYouTubeMedia(meta.youtubeUrls, meta.title);
+    const localized = localizeProjectMeta(meta, locale);
+    const localMedia = loadLocalMedia(meta.slug, localized.title);
+    const youtubeMedia = loadYouTubeMedia(meta.youtubeUrls, localized.title);
     const media = [...localMedia, ...youtubeMedia];
 
     const cover =
-      findCustomCover(meta.slug, meta.title) ??
-      mediaToCover(media[0], meta.slug, meta.title);
+      findCustomCover(meta.slug, localized.title) ??
+      mediaToCover(media[0], meta.slug, localized.title);
 
-    return { ...meta, cover, media };
+    return {
+      ...meta,
+      ...localized,
+      categoryLabel: localizeCategory(meta.category, locale),
+      cover,
+      media,
+    };
   });
 }
 
-export function getProjectBySlug(slug: string): Project | undefined {
-  return getProjects().find((project) => project.slug === slug);
+export function getProjectBySlug(slug: string, locale: Locale = "fr"): Project | undefined {
+  return getProjects(locale).find((project) => project.slug === slug);
 }
 
 export function getAllProjectSlugs(): string[] {
@@ -177,15 +216,15 @@ function sortProjectsByRecency(projects: Project[], meta: ProjectMeta[]): Projec
   });
 }
 
-export function getLatestProject(): Project | undefined {
-  const projects = getProjects();
+export function getLatestProject(locale: Locale = "fr"): Project | undefined {
+  const projects = getProjects(locale);
   if (projects.length === 0) return undefined;
 
   return sortProjectsByRecency(projects, readProjectsMeta())[0];
 }
 
-export function getLatestPhotoProject(): Project | undefined {
-  const photoProjects = getProjects().filter((project) => project.category === "Photo");
+export function getLatestPhotoProject(locale: Locale = "fr"): Project | undefined {
+  const photoProjects = getProjects(locale).filter((project) => project.category === "Photo");
   if (photoProjects.length === 0) return undefined;
 
   return sortProjectsByRecency(photoProjects, readProjectsMeta())[0];

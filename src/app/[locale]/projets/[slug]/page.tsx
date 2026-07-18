@@ -1,25 +1,29 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { MediaGallery } from "@/components/media/MediaGallery";
 import { ProjectHero } from "@/components/projects/ProjectHero";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { getAllProjectSlugs, getProjectBySlug } from "@/data/projects";
 import { siteConfig } from "@/data/site";
+import { routing, type Locale } from "@/i18n/routing";
 
 type ProjectPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
-export async function generateStaticParams() {
-  return getAllProjectSlugs().map((slug) => ({ slug }));
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    getAllProjectSlugs().map((slug) => ({ locale, slug })),
+  );
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { locale, slug } = await params;
+  const project = getProjectBySlug(slug, locale as Locale);
 
   if (!project) {
-    return { title: `Projet — ${siteConfig.fullName}` };
+    return { title: siteConfig.fullName };
   }
 
   return {
@@ -29,8 +33,10 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { locale, slug } = await params;
+  setRequestLocale(locale as Locale);
+  const t = await getTranslations("projects");
+  const project = getProjectBySlug(slug, locale as Locale);
 
   if (!project) {
     notFound();
@@ -43,7 +49,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <div className="page-shell py-16 md:py-24">
         <ScrollReveal>
           <div className="max-w-3xl">
-            <p className="text-[11px] uppercase tracking-[0.4em] text-muted">À propos du projet</p>
+            <p className="text-[11px] uppercase tracking-[0.4em] text-muted">{t("aboutProject")}</p>
             <p className="mt-5 text-base leading-8 text-foreground md:text-lg">{project.description}</p>
           </div>
         </ScrollReveal>
