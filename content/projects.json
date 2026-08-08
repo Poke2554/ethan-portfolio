@@ -58,34 +58,5 @@
     "year": 2025,
     "youtubeUrls": [],
     "instagramUrls": []
-  },
-  {
-    "slug": "mercimabel",
-    "title": "Merci Mabel",
-    "excerpt": "Food",
-    "excerptEn": "Food",
-    "description": "Réalisation vidéo pour un Coffee Shop à destination de leur réseaux sociaux.",
-    "descriptionEn": "Video production for a coffee shop, created for their social media channels.",
-    "category": "Vidéo",
-    "year": 2026,
-    "youtubeUrls": [
-      "https://youtu.be/bJT-ajcfkY0",
-      "https://youtu.be/lysLHzRiTfU"
-    ],
-    "instagramUrls": []
-  },
-  {
-    "slug": "fashionedito",
-    "title": "Fashion Edito",
-    "excerpt": "Court Métrage",
-    "excerptEn": "Short Film",
-    "description": "Regard artistique et fragments de mélancolie : une réinterprétation de mon vestiaire.",
-    "descriptionEn": "An artistic gaze and fragments of melancholy: a reinterpretation of my wardrobe.",
-    "category": "Vidéo",
-    "year": 2026,
-    "youtubeUrls": [
-      "https://youtu.be/0sCtqiKHYsA"
-    ],
-    "instagramUrls": []
   }
 ]
