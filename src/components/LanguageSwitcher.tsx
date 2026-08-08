@@ -5,11 +5,7 @@ import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 
-type LanguageSwitcherProps = {
-  transparent?: boolean;
-};
-
-export function LanguageSwitcher({ transparent = false }: LanguageSwitcherProps) {
+export function LanguageSwitcher() {
   const locale = useLocale() as Locale;
   const pathname = usePathname();
   const params = useParams();
@@ -43,9 +39,7 @@ export function LanguageSwitcher({ transparent = false }: LanguageSwitcherProps)
 
   return (
     <div
-      className={`flex items-center gap-1 rounded-full border p-1 text-[10px] uppercase tracking-[0.2em] ${
-        transparent ? "border-white/25 bg-white/10 text-white" : "border-border bg-background text-muted"
-      }`}
+      className="flex items-center gap-1 rounded-full border border-border bg-background p-1 text-[10px] uppercase tracking-[0.2em] text-muted"
       role="group"
       aria-label="Language"
     >
@@ -55,11 +49,7 @@ export function LanguageSwitcher({ transparent = false }: LanguageSwitcherProps)
           type="button"
           onClick={() => switchLocale(item)}
           className={`rounded-full px-2.5 py-1 transition ${
-            locale === item
-              ? transparent
-                ? "bg-white text-foreground"
-                : "bg-foreground text-background"
-              : "hover:text-foreground"
+            locale === item ? "bg-foreground text-background" : "hover:text-foreground"
           }`}
         >
           {item}

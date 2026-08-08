@@ -36,22 +36,20 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const transparent = isHome && !scrolled && !menuOpen;
+  const homeTop = isHome && !scrolled && !menuOpen;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        transparent
-          ? "border-transparent bg-transparent"
+      className={`fixed inset-x-0 top-0 z-[70] transition-all duration-300 ${
+        homeTop
+          ? "border-transparent bg-white/75 backdrop-blur-md"
           : "border-b border-border bg-background/92 backdrop-blur-md"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
         <Link
           href="/"
-          className={`font-display text-sm font-semibold uppercase tracking-[0.28em] ${
-            transparent ? "text-white" : "text-foreground"
-          }`}
+          className="font-display text-sm font-semibold uppercase tracking-[0.28em] text-foreground"
         >
           Ethan
         </Link>
@@ -65,13 +63,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={`text-[11px] uppercase tracking-[0.24em] transition ${
-                    active
-                      ? transparent
-                        ? "text-white"
-                        : "text-foreground"
-                      : transparent
-                        ? "text-white/70 hover:text-white"
-                        : "text-muted link-hover"
+                    active ? "text-foreground" : "text-muted link-hover"
                   }`}
                 >
                   {item.label}
@@ -79,11 +71,11 @@ export function Header() {
               );
             })}
           </nav>
-          <LanguageSwitcher transparent={transparent} />
+          <LanguageSwitcher />
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
-          <LanguageSwitcher transparent={transparent} />
+          <LanguageSwitcher />
           <button
             type="button"
             aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
@@ -92,19 +84,19 @@ export function Header() {
           >
             <span className="relative block h-3.5 w-4">
               <span
-                className={`absolute left-0 block h-px w-full transition ${
-                  transparent ? "bg-white" : "bg-foreground"
-                } ${menuOpen ? "top-1.5 rotate-45" : "top-0"}`}
+                className={`absolute left-0 block h-px w-full bg-foreground transition ${
+                  menuOpen ? "top-1.5 rotate-45" : "top-0"
+                }`}
               />
               <span
-                className={`absolute left-0 top-1.5 block h-px w-full transition ${
-                  transparent ? "bg-white" : "bg-foreground"
-                } ${menuOpen ? "opacity-0" : "opacity-100"}`}
+                className={`absolute left-0 top-1.5 block h-px w-full bg-foreground transition ${
+                  menuOpen ? "opacity-0" : "opacity-100"
+                }`}
               />
               <span
-                className={`absolute left-0 block h-px w-full transition ${
-                  transparent ? "bg-white" : "bg-foreground"
-                } ${menuOpen ? "top-1.5 -rotate-45" : "top-3"}`}
+                className={`absolute left-0 block h-px w-full bg-foreground transition ${
+                  menuOpen ? "top-1.5 -rotate-45" : "top-3"
+                }`}
               />
             </span>
           </button>
